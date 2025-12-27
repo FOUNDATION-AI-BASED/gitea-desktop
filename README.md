@@ -38,7 +38,7 @@ The prebuild macos app requires you to self sign it!
 
 For that use the following command and execute the it in the terminal:
 
-xattr -cr /Applications/Gitea\ Desktop.app
+`xattr -cr /Applications/Gitea\ Desktop.app`
 
 Setup guides will follow soon.
 
