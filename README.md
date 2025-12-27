@@ -24,6 +24,7 @@ This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop
 
 
 ## OS SUPPORT TESTED
+| --- | :---: | :---: |
 | WINDOWS 10 | DEV TESTED |
 | WINDOWS 11 | ✗ |
 | MAXOS | ✗ |
