@@ -83,7 +83,7 @@ Apple requires macOS to produce `.app`/DMG builds.
 
 Open a new issue and well evaluate it and take care of it.
 
-
+---
 
 Built with TraeAI.
 
