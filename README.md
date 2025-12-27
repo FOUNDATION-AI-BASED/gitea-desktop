@@ -65,3 +65,9 @@ Apple requires macOS to produce `.app`/DMG builds.
 
 - On Linux: `npm install && npm run dist` to produce AppImage/deb
 - Cross-compiling Linux from Windows is not reliably supported for all targets; use a Linux machine/VM/CI for best results.
+
+---
+
+Built with TraeAI.
+
+Built with ChatGPT 5.2.
