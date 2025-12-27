@@ -12,24 +12,15 @@ This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop
 | --- | :---: | :---: |
 | Login with personal access token | ✓ | ✗ |
 | Login with username + password (token created) | ✓ | ✗ |
-| Login with browser OAuth (PKCE) | ✓ | ✓ |
-| List repositories for the signed-in account | ✓ | ✓ |
-| Refresh repositories from server | ✓ | ✓ |
+| Login with browser OAuth (PKCE) | ✓ | ✗ |
+| List repositories for the signed-in account | ✓ | ✗ |
+| Refresh repositories from server | ✓ | ✗ |
 | Create repository (owner, name, description, public/private) | ✓ | ✗ |
-| Clone selected repository (HTTPS/SSH) | ✓ | ✓ |
-| Publish local folder to selected repository | ✓ | ✓ |
-| Publish commit title + description | ✓ | ✓ |
-| Publish progress/status bar | ✓ | ✓ |
+| Clone selected repository (HTTPS/SSH) | ✓ | ✗ |
+| Publish local folder to selected repository | ✓ | ✗ |
+| Publish commit title + description | ✓ | ✗ |
+| Publish progress/status bar | ✓ | ✗ |
 | Local repo status (`git status --porcelain=v2`) | ✓ | ✗ |
-
-
-## OS SUPPORT TESTED
-| OS | STATUS |
-| --- | :---: |
-| WINDOWS 10 | DEV TESTED |
-| WINDOWS 11 | ✗ |
-| MAXOS | ✗ |
-| LINUX | ✗ |
 
 ## Prerequisites
 

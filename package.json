@@ -3,7 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "description": "A cross-platform Gitea desktop client",
-  "author": "",
+  "author": {
+    "name": "Gitea Desktop",
+    "email": "noreply@users.noreply.github.com"
+  },
   "main": "dist-electron/main.js",
   "type": "module",
   "scripts": {
