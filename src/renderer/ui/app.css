@@ -1,0 +1,352 @@
+:root {
+  color-scheme: dark;
+  --bg0: #0b1220;
+  --bg1: #0e1930;
+  --card: rgba(255, 255, 255, 0.06);
+  --card2: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
+  --text: #e5e7eb;
+  --muted: #a7b0c0;
+  --accent: #60a5fa;
+  --danger: #fca5a5;
+  --dangerText: #7f1d1d;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(1200px 600px at 30% 0%, rgba(96, 165, 250, 0.18), transparent 55%),
+    radial-gradient(900px 600px at 80% 30%, rgba(167, 139, 250, 0.16), transparent 55%),
+    linear-gradient(180deg, var(--bg1), var(--bg0));
+  color: var(--text);
+}
+
+#root {
+  min-height: 100%;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 18px 18px 24px;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 12px;
+}
+
+.sidebar {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 18px - 24px);
+}
+
+.brand {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  padding: 10px 10px 4px;
+}
+
+.nav {
+  display: grid;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.navBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.navBtnActive {
+  background: rgba(96, 165, 250, 0.14);
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.navMeta {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.sidebarFooter {
+  margin-top: auto;
+  padding-top: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.main {
+  display: grid;
+  gap: 12px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+}
+
+.topbarTitle {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  border-color: rgba(96, 165, 250, 0.55);
+  background: rgba(96, 165, 250, 0.18);
+}
+
+.btnPrimary:hover {
+  background: rgba(96, 165, 250, 0.24);
+}
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  padding: 14px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.grid {
+  display: grid;
+  gap: 12px;
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.input,
+.select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--text);
+  outline: none;
+}
+
+.input:focus,
+.select:focus {
+  border-color: rgba(96, 165, 250, 0.65);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.14);
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.repoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.repoGroupList {
+  display: grid;
+  gap: 14px;
+}
+
+.repoGroupHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.repoGroupName {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.repoGroupLine {
+  height: 1px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.hero {
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 18px;
+  padding: 16px;
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.18), rgba(167, 139, 250, 0.12));
+  backdrop-filter: blur(10px);
+}
+
+.heroTitle {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.heroSub {
+  color: var(--muted);
+  margin-top: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.repoCard {
+  text-align: left;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+.repoCard:hover {
+  background: rgba(0, 0, 0, 0.26);
+}
+
+.repoCard:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.repoCardSelected {
+  border-color: rgba(96, 165, 250, 0.75);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.error {
+  background: rgba(252, 165, 165, 0.22);
+  border: 1px solid rgba(252, 165, 165, 0.35);
+  color: #fee2e2;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.warn {
+  background: rgba(251, 191, 36, 0.14);
+  border: 1px solid rgba(251, 191, 36, 0.22);
+  color: #fde68a;
+  padding: 12px;
+  border-radius: 14px;
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.progressTrack {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: rgba(96, 165, 250, 0.7);
+  width: 0%;
+  transition: width 150ms ease-out;
+}
