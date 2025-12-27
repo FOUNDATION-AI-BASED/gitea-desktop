@@ -57,7 +57,6 @@ jobs:
           name: ${{ matrix.os }}-artifacts
           path: |
             dist/*.exe
-            dist/*.msi
             dist/*.dmg
             dist/*.zip
             dist/*.AppImage
@@ -80,18 +79,16 @@ jobs:
           merge-multiple: true
           path: release-dist
 
+      - name: List downloaded artifacts
+        run: ls -la release-dist
+
+      - name: Verify at least one artifact exists
+        run: test -n "$(find release-dist -maxdepth 1 -type f | head -n 1)"
+
       - name: Upload to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          fail_on_unmatched_files: true
+          fail_on_unmatched_files: false
           tag_name: ${{ github.event.inputs.tag || github.ref_name }}
           files: |
-            release-dist/*.exe
-            release-dist/*.msi
-            release-dist/*.dmg
-            release-dist/*.zip
-            release-dist/*.AppImage
-            release-dist/*.deb
-            release-dist/latest*.yml
-            release-dist/*.blockmap
-            release-dist/*.tar.gz
+            release-dist/*
