@@ -22,6 +22,13 @@ This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop
 | Publish progress/status bar | ✓ | ✓ |
 | Local repo status (`git status --porcelain=v2`) | ✓ | ✗ |
 
+
+## OS SUPPORT TESTED
+| WINDOWS 10 | DEV TESTED |
+| WINDOWS 11 | ✗ |
+| MAXOS | ✗ |
+| LINUX | ✗ |
+
 ## Prerequisites
 
 - Node.js 20+ (recommended)
