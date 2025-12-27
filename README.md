@@ -22,6 +22,17 @@ This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop
 | Publish progress/status bar | ✓ | ✗ |
 | Local repo status (`git status --porcelain=v2`) | ✓ | ✗ |
 
+
+## MACOS!!
+
+The prebuild macos app requires you to self sign her!
+
+For that use the following command and execute the it in the terminal:
+
+xattr -cr /Applications/Gitea\ Desktop.app
+
+Setup guides will follow soon.
+
 ## Prerequisites
 
 - Node.js 20+ (recommended)
