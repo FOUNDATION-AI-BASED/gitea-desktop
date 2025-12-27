@@ -79,6 +79,12 @@ Apple requires macOS to produce `.app`/DMG builds.
 
 ---
 
+## Feature requests or bug reports are welcome!
+
+Open a new issue and well evaluate it and take care of it.
+
+
+
 Built with TraeAI.
 
 Built with ChatGPT 5.2.
