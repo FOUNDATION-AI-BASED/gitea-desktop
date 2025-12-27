@@ -2,6 +2,15 @@
 
 This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop-like" workflow for Gitea.
 
+---
+
+## Build Status:
+
+[![Build & Release](https://github.com/FOUNDATION-AI-BASED/gitea-desktop/actions/workflows/release.yml/badge.svg)](https://github.com/FOUNDATION-AI-BASED/gitea-desktop/actions/workflows/release.yml)
+
+
+---
+
 ## Features
 
 `✓` = implemented / `✗` = not implemented
