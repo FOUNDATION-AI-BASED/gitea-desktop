@@ -25,7 +25,7 @@ This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop
 
 ## MACOS!!
 
-The prebuild macos app requires you to self sign her!
+The prebuild macos app requires you to self sign it!
 
 For that use the following command and execute the it in the terminal:
 
