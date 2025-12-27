@@ -1,7 +1,7 @@
 {
   "name": "gitea-desktop",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A cross-platform Gitea desktop client",
   "author": {
     "name": "Gitea Desktop",

@@ -52,8 +52,26 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Set build version from tag (semver only)
+        shell: bash
+        env:
+          TAG_NAME: ${{ github.event.inputs.tag || github.ref_name }}
+        run: |
+          tag="$TAG_NAME"
+          tag="${tag#v}"
+          tag="${tag#V}"
+          if [[ "$tag" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "APP_VERSION=$tag" >> "$GITHUB_ENV"
+          fi
+
       - name: Build release artifacts
-        run: npm run dist -- --publish never
+        shell: bash
+        run: |
+          if [ -n "${APP_VERSION:-}" ]; then
+            npm run dist -- --publish never --config.extraMetadata.version="$APP_VERSION"
+          else
+            npm run dist -- --publish never
+          fi
 
       - name: Upload build artifacts (workflow run)
         uses: actions/upload-artifact@v4
