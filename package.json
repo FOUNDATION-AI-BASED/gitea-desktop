@@ -1,7 +1,7 @@
 {
   "name": "gitea-desktop",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A cross-platform Gitea desktop client",
   "author": "",
   "main": "dist-electron/main.js",
@@ -42,6 +42,7 @@
   "build": {
     "appId": "com.gitea.desktop",
     "productName": "Gitea Desktop",
+    "icon": "gitea.png",
     "files": [
       "dist-electron/**",
       "dist/renderer/**",
