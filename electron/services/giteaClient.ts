@@ -167,28 +167,12 @@ export class GiteaClient {
     });
 
     const fetchPaged = async (basePath: string) => {
-      let first: ApiRepo[] | null = null;
-      try {
-        const res = await this.request<ApiRepo[]>(basePath);
-        first = Array.isArray(res) ? res : [];
-      } catch {
-        first = null;
-      }
-
-      let best = first;
-      try {
-        const res = await this.request<ApiRepo[]>(`${basePath}?limit=1000`);
-        const limited = Array.isArray(res) ? res : [];
-        if (!best || limited.length >= best.length) best = limited;
-      } catch {
-        // ignore
-      }
-
-      if (best) return best;
-
       const perPage = 50;
+      const maxPages = 200;
       const out: ApiRepo[] = [];
-      for (let page = 1; page <= 20; page++) {
+      const seen = new Set<string>();
+
+      for (let page = 1; page <= maxPages; page++) {
         let batch: ApiRepo[];
         try {
           batch = await this.request<ApiRepo[]>(`${basePath}?limit=${perPage}&page=${page}`);
@@ -199,10 +183,22 @@ export class GiteaClient {
           }
           throw e;
         }
+
         if (!Array.isArray(batch) || batch.length === 0) break;
-        out.push(...batch);
+
+        let addedAny = false;
+        for (const r of batch) {
+          const key = String(r.id);
+          if (seen.has(key)) continue;
+          seen.add(key);
+          out.push(r);
+          addedAny = true;
+        }
+
+        if (!addedAny) break;
         if (batch.length < perPage) break;
       }
+
       return out;
     };
 

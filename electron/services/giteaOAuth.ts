@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import http from "node:http";
-import { BrowserWindow, shell } from "electron";
+import { shell } from "electron";
 
 const base64Url = (buf: Buffer) =>
   buf
@@ -120,10 +120,14 @@ export const oauthLoginWithPkce = async (
   const redirectUri = "http://127.0.0.1:17171/oauth/callback";
 
   const authResult = await new Promise<{ code: string; redirectUri: string }>((resolve, reject) => {
-    let authWin: BrowserWindow | null = null;
-    let finished = false;
+    let settled = false;
     const server = http.createServer((req, res) => {
       try {
+        if (settled) {
+          res.statusCode = 409;
+          res.end("Already handled");
+          return;
+        }
         if (!req.url) {
           res.statusCode = 400;
           res.end("Bad request");
@@ -145,8 +149,7 @@ export const oauthLoginWithPkce = async (
         if (err) {
           res.statusCode = 400;
           res.end(`<h1>Login failed</h1><p>${escapeHtml(errDesc || err)}</p>`);
-          finished = true;
-          if (authWin) authWin.close();
+          settled = true;
           server.close();
           reject(new Error(errDesc || err));
           return;
@@ -155,30 +158,31 @@ export const oauthLoginWithPkce = async (
         if (!code || !gotState || gotState !== state) {
           res.statusCode = 400;
           res.end("<h1>Login failed</h1><p>Missing or invalid callback parameters.</p>");
-          finished = true;
-          if (authWin) authWin.close();
+          settled = true;
           server.close();
           reject(new Error("OAuth callback missing code/state"));
           return;
         }
 
         res.statusCode = 200;
-        res.end("<h1>Login complete</h1><p>Returning to the app…</p><script>setTimeout(() => window.close(), 250);</script>");
-        finished = true;
-        if (authWin) authWin.close();
+        res.end("<h1>Login complete</h1><p>You can close this tab and return to the app.</p>");
+        settled = true;
         server.close();
         resolve({ code, redirectUri });
       } catch (e) {
         res.statusCode = 500;
         res.end("Internal error");
-        finished = true;
-        if (authWin) authWin.close();
+        settled = true;
         server.close();
         reject(e instanceof Error ? e : new Error(String(e)));
       }
     });
 
-    server.on("error", (e) => reject(e));
+    server.on("error", (e) => {
+      if (settled) return;
+      settled = true;
+      reject(e);
+    });
     server.listen(17171, "127.0.0.1", async () => {
       const url = new URL(authorizeEndpoint(baseUrl));
       url.searchParams.set("client_id", clientId);
@@ -188,39 +192,12 @@ export const oauthLoginWithPkce = async (
       url.searchParams.set("code_challenge", codeChallenge);
       url.searchParams.set("code_challenge_method", "S256");
       url.searchParams.set("scope", "read:user read:repository");
-
-      authWin = new BrowserWindow({
-        width: 980,
-        height: 820,
-        show: true,
-        autoHideMenuBar: true,
-        title: "Sign in to Gitea",
-        webPreferences: {
-          contextIsolation: true,
-          nodeIntegration: false
-        }
-      });
-
-      authWin.webContents.setWindowOpenHandler(({ url }) => {
-        void shell.openExternal(url);
-        return { action: "deny" };
-      });
-
-      authWin.on("closed", () => {
-        authWin = null;
-        if (!finished) {
-          finished = true;
-          server.close();
-          reject(new Error("OAuth window was closed"));
-        }
-      });
-
-      await authWin.loadURL(url.toString());
+      await shell.openExternal(url.toString());
     });
 
     setTimeout(() => {
-      finished = true;
-      if (authWin) authWin.close();
+      if (settled) return;
+      settled = true;
       server.close();
       reject(new Error("OAuth login timed out"));
     }, 3 * 60 * 1000).unref?.();
