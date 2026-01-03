@@ -2,6 +2,15 @@
 
 This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop-like" workflow for Gitea.
 
+---
+
+## Build Status:
+
+[![Build & Release](https://github.com/FOUNDATION-AI-BASED/gitea-desktop/actions/workflows/release.yml/badge.svg)](https://github.com/FOUNDATION-AI-BASED/gitea-desktop/actions/workflows/release.yml)
+
+
+---
+
 ## Features
 
 `✓` = implemented / `✗` = not implemented
@@ -21,6 +30,19 @@ This is an Electron-based cross-platform desktop app targeting a "GitHub Desktop
 | Publish commit title + description | ✓ | ✗ |
 | Publish progress/status bar | ✓ | ✗ |
 | Local repo status (`git status --porcelain=v2`) | ✓ | ✗ |
+
+
+## MACOS!!
+
+The prebuild macos app requires you to self sign it!
+
+For that use the following command and execute the it in the terminal:
+
+```bash
+xattr -cr /Applications/Gitea\ Desktop.app
+```
+
+Setup guides will follow soon.
 
 ## Prerequisites
 
@@ -65,6 +87,12 @@ Apple requires macOS to produce `.app`/DMG builds.
 
 - On Linux: `npm install && npm run dist` to produce AppImage/deb
 - Cross-compiling Linux from Windows is not reliably supported for all targets; use a Linux machine/VM/CI for best results.
+
+---
+
+## Feature requests or bug reports are welcome!
+
+Open a new issue and well evaluate it and take care of it.
 
 ---
 
